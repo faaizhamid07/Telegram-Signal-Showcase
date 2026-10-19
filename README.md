@@ -6,11 +6,6 @@ Telegram Signal watches selected Telegram groups for keywords you set up. When a
 
 ## Screenshots
 
-Add screenshots of the actual app here so visitors can see what it looks like before trying it.
-
-Save the image files in `docs/screenshots/` in this repository, then add them here using Markdown. For example:
-
-```md
 ![Telegram Signal dashboard](docs/screenshots/dashboard.png)
 ```
 
