@@ -1,136 +1,108 @@
 # Telegram Signal
 
-**Find the Telegram messages that matter to you—without constantly checking every group.**
+**Find useful messages in Telegram groups without checking every group all day.**
 
-<p align="center">
-  <strong>Telegram Signal</strong><br />
-  A focused way to discover relevant messages in busy Telegram communities.
-</p>
+Telegram Signal watches selected Telegram groups for keywords you set up. When a new message matches, it appears in the dashboard and can trigger a Telegram notification.
 
-<p align="center">
-  <a href="#highlights">Features</a> ·
-  <a href="#how-it-works">How it works</a> ·
-  <a href="#product-status">Project status</a> ·
-  <a href="#support">Support</a>
-</p>
+## Screenshots
 
-Telegram Signal is a keyword-monitoring dashboard designed to help people find relevant messages in busy Telegram groups. Configure keywords or phrases you care about, monitor Telegram groups your account is authorized to access, and review matching new messages in one place.
+Add screenshots of the actual app here so visitors can see what it looks like before trying it.
+
+Save the image files in `docs/screenshots/` in this repository, then add them here using Markdown. For example:
+
+```md
+![Telegram Signal dashboard](docs/screenshots/dashboard.png)
+```
+
+<!-- When you add the screenshot, remove the comment markers from the line below and make sure the file path matches the image name. -->
+<!-- ![Telegram Signal dashboard](docs/screenshots/dashboard.png) -->
 
 ## At a glance
 
-| | |
-|---|---|
-| **Purpose** | Keyword monitoring for Telegram groups |
-| **Dashboard** | React frontend served by FastAPI |
-| **Message listener** | Telethon using an authorized Telegram user account |
-| **Notifications** | Telegram Bot API |
-| **Current storage** | SQLite |
-| **Current stage** | Single-user MVP; multi-user SaaS work remains |
+- **Dashboard:** React
+- **Backend:** FastAPI
+- **Telegram listener:** Telethon
+- **Notifications:** Telegram Bot API
+- **Database:** SQLite
+- **Current stage:** Single-user MVP. Multi-user SaaS features are still to be built.
 
-## The problem
+## Why I built it
 
-Telegram groups can be useful sources of job openings, freelance projects, business leads, announcements, research discussions, and industry updates. But when information is spread across many busy groups, important posts can quickly disappear under unrelated messages. Checking every group manually takes time and makes it easy to miss something relevant.
+Telegram groups can be useful for finding job posts, freelance work, business leads, announcements, and industry news. The problem is that busy groups fill up quickly, and it's easy to miss a post that matters.
 
-## The solution
+Telegram Signal is meant to make that easier. Add the words or phrases you care about, select the groups you want to monitor, and check the matches in one place.
 
-Telegram Signal monitors selected Telegram groups for configured keywords. When a new message matches, it records the match in a dashboard and can send a notification to a configured Telegram chat.
+## Main features
 
-**The goal:** turn noisy Telegram activity into a more focused stream of information you want to review.
-
-## Highlights
-
-- **Keyword monitoring** — track words and phrases you choose.
-- **Centralized results** — review matching messages in one dashboard.
-- **Telegram notifications** — receive alerts in a configured Telegram chat.
-- **Source context** — view available links to original messages.
-- **Configurable sources** — monitor only groups your Telegram account can access and that you enable.
-
-## Who might find it useful?
-
-- **Job seekers** tracking vacancies and recruitment announcements
-- **Freelancers** looking for project opportunities and potential clients
-- **Entrepreneurs** following business leads and announcements
-- **Researchers and professionals** tracking discussions and updates
-- **Telegram power users** who follow many groups and want a more focused way to find relevant posts
+- Monitor new messages for keywords and phrases
+- See matching messages in a web dashboard
+- Get alerts in a configured Telegram chat
+- Open the original message when a link is available
+- Choose which accessible groups to monitor
 
 ## How it works
 
-1. Choose Telegram groups or channels your account is authorized to access.
-2. Add keywords or phrases you want to find.
-3. Telegram Signal checks new incoming messages from enabled sources.
-4. Matching messages are stored and shown in the dashboard.
-5. Review the match and open the source message when a link is available.
+1. Select Telegram groups or channels your account can access.
+2. Add the keywords you want to track.
+3. Telegram Signal checks new messages from those sources.
+4. Matches are saved and shown in the dashboard.
+5. If notifications are configured, a matching message can also trigger a Telegram alert.
 
-## Product status
+## Current status
 
-Telegram Signal is currently an **MVP (minimum viable product)**. The current implementation uses a React dashboard, FastAPI backend, Telethon user-account listener, Telegram Bot API notifications, and SQLite storage.
+This is an MVP, not a finished multi-user SaaS product. The current version uses a React dashboard, a FastAPI backend, Telethon to listen to Telegram, the Telegram Bot API for alerts, and SQLite to store data.
 
-It is currently a single-user starter implementation—not yet a production-ready multi-user SaaS. Multi-user accounts, customer data isolation, subscription billing, and other production features need to be implemented and tested before offering the service broadly.
+Before it can be offered as a reliable service to multiple customers, it still needs work on user accounts, keeping each customer's data separate, production hosting, billing, and operational monitoring.
 
-## High-level architecture
+## How the parts fit together
 
 ```mermaid
 flowchart TD
-    A[Telegram groups accessible to the account] --> B[Telethon listener]
+    A[Telegram groups] --> B[Telethon listener]
     B --> C[Keyword matching]
     C --> D[SQLite database]
-    D --> E[React dashboard served by FastAPI]
-    C --> F[Telegram Bot API notification]
-    F --> G[Configured Telegram chat]
+    D --> E[React dashboard]
+    C --> F[Telegram Bot API]
+    F --> G[Notification chat]
 ```
 
-## What it does today—and what it doesn't
+## Current limitations
 
-**Current MVP capabilities**
-- Match new incoming text messages against configured keywords or phrases
-- Display matches in a web dashboard
-- Store group configuration, keyword rules, and matched messages in SQLite
-- Send matching alerts to a configured Telegram chat
+- It checks new messages after the listener starts; it does not search old messages.
+- Keyword matching is case-insensitive and based on literal words or phrases.
+- Messages with no text are ignored.
+- The current SQLite setup is intended for a single running instance, not horizontal scaling.
+- Multi-user accounts, customer data separation, subscriptions, and payments are not implemented yet.
+- What the listener can see depends on the Telegram account's access and Telegram's own limits.
 
-**Current limitations**
-- Monitors new messages after the listener starts; it does not backfill historical messages
-- Matching is case-insensitive literal keyword/phrase matching
-- Media-only messages without text are ignored
-- SQLite is intended for a single always-on instance; do not scale this implementation horizontally
-- Advanced matching rules, multi-user authentication, account-level data isolation, and subscription billing are future work
-- Telegram access, availability, and rate limits depend on Telegram and the permissions of the account being used
+## Privacy and responsible use
 
-## Responsible use and privacy
+Only monitor groups and messages you are allowed to access. Follow group rules and Telegram's applicable terms, and respect members' privacy.
 
-Use Telegram Signal only with Telegram sources and content you are authorized to access. Respect group rules, Telegram's applicable terms, and the privacy expectations of group members. Do not use the product to bypass access controls.
-
-The service may process message text, group identifiers, keywords, and matched-message metadata. A production service should clearly explain its data handling, retention, and deletion practices in its privacy policy.
-
-## Support
-
-For product questions, beta access, or support, contact the developer on Telegram.
-
-- **Telegram support:** Add your Telegram username or direct-message link here before sharing this repository widely.
-
-Support is currently handled directly by the developer; formal response-time commitments and a ticketing system are not yet advertised.
+A hosted version will need clear information about what data it stores, how long it keeps it, and how users can request deletion. Do not put real private messages, Telegram session files, bot tokens, or other secrets in screenshots or this public repository.
 
 ## Roadmap
 
-- [ ] Harden authentication and session management
-- [ ] Add secure multi-user accounts and strict customer data isolation
-- [ ] Move production data to managed PostgreSQL
-- [ ] Add subscription plans, usage limits, and verified payment handling
-- [ ] Improve monitoring reliability, observability, and recovery
-- [ ] Publish privacy policy, terms of service, and retention details
-- [ ] Create a public demo and product screenshots
+- [ ] Improve authentication and session security
+- [ ] Add multi-user accounts and separate customer data
+- [ ] Move production data to a managed database
+- [ ] Add subscription plans and payment handling
+- [ ] Improve logging, monitoring, and recovery
+- [ ] Publish terms of service and a privacy policy
+- [ ] Add a live demo
 
-## Screenshots and demo
+## Contact
 
-Screenshots and a live demo can be added here as they become available. Do not include real customer messages, private group details, session strings, bot tokens, or other sensitive information in public screenshots.
+For questions or beta access, contact me on Telegram.
 
-## Repository and intellectual property
+- **Telegram:** Replace this line with your Telegram username or direct-message link before sharing the repository.
 
-This is a public product showcase. It describes Telegram Signal but does not include the proprietary application source code. The software implementation is maintained separately in a private repository. This repository is for product information and does not grant a license to the private application source code.
+## About this repository
 
-Copyright © 2026 Faaiz Hamid. All rights reserved. Product names and third-party services mentioned here belong to their respective owners. This project is not affiliated with or endorsed by Telegram.
+This is the public showcase for Telegram Signal. It explains the product but does not contain the application's proprietary source code, which is maintained in a separate private repository. This showcase does not grant permission to use or redistribute that source code.
+
+Copyright (c) 2026 Faaiz Hamid. All rights reserved. Telegram and other third-party names belong to their respective owners. This project is not affiliated with or endorsed by Telegram.
 
 ---
 
-**Interested in trying Telegram Signal?** Contact the developer for beta access and availability.
-
-> **Note:** Features, availability, pricing, and launch dates may change while the product is in development. Do not rely on this showcase as a promise that planned SaaS features are already available.
+The product is still in development. Features, availability, and pricing may change.
