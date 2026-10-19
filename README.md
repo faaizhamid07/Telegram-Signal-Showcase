@@ -2,7 +2,30 @@
 
 **Find the Telegram messages that matter to you—without constantly checking every group.**
 
+<p align="center">
+  <strong>Telegram Signal</strong><br />
+  A focused way to discover relevant messages in busy Telegram communities.
+</p>
+
+<p align="center">
+  <a href="#highlights">Features</a> ·
+  <a href="#how-it-works">How it works</a> ·
+  <a href="#product-status">Project status</a> ·
+  <a href="#support">Support</a>
+</p>
+
 Telegram Signal is a keyword-monitoring dashboard designed to help people find relevant messages in busy Telegram groups. Configure keywords or phrases you care about, monitor Telegram groups your account is authorized to access, and review matching new messages in one place.
+
+## At a glance
+
+| | |
+|---|---|
+| **Purpose** | Keyword monitoring for Telegram groups |
+| **Dashboard** | React frontend served by FastAPI |
+| **Message listener** | Telethon using an authorized Telegram user account |
+| **Notifications** | Telegram Bot API |
+| **Current storage** | SQLite |
+| **Current stage** | Single-user MVP; multi-user SaaS work remains |
 
 ## The problem
 
@@ -80,11 +103,11 @@ The service may process message text, group identifiers, keywords, and matched-m
 
 ## Support
 
-For product questions or support, contact the developer through Telegram:
+For product questions, beta access, or support, contact the developer on Telegram.
 
-- **Telegram support:** [Add your Telegram username or support link here]
+- **Telegram support:** Add your Telegram username or direct-message link here before sharing this repository widely.
 
-Replace the placeholder above with your actual support link before sharing this repository widely.
+Support is currently handled directly by the developer; formal response-time commitments and a ticketing system are not yet advertised.
 
 ## Roadmap
 
@@ -96,12 +119,18 @@ Replace the placeholder above with your actual support link before sharing this 
 - [ ] Publish privacy policy, terms of service, and retention details
 - [ ] Create a public demo and product screenshots
 
+## Screenshots and demo
+
+Screenshots and a live demo can be added here as they become available. Do not include real customer messages, private group details, session strings, bot tokens, or other sensitive information in public screenshots.
+
 ## Repository and intellectual property
 
-This is a public product showcase. It describes Telegram Signal but does not include the proprietary application source code. The software implementation is maintained separately in a private repository.
+This is a public product showcase. It describes Telegram Signal but does not include the proprietary application source code. The software implementation is maintained separately in a private repository. This repository is for product information and does not grant a license to the private application source code.
 
 Copyright © 2026 Faaiz Hamid. All rights reserved. Product names and third-party services mentioned here belong to their respective owners. This project is not affiliated with or endorsed by Telegram.
 
 ---
 
 **Interested in trying Telegram Signal?** Contact the developer for beta access and availability.
+
+> **Note:** Features, availability, pricing, and launch dates may change while the product is in development. Do not rely on this showcase as a promise that planned SaaS features are already available.
