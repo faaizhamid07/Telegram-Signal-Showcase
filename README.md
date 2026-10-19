@@ -6,7 +6,7 @@ Telegram Signal watches selected Telegram groups for keywords you set up. When a
 
 ## Screenshots
 
-![Telegram Signal dashboard](docs/screenshots/dashboard.png)
+![Telegram Signal dashboard](docs/screenshots/Dashboard.png)
 
 
 ## At a glance
