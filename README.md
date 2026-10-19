@@ -86,7 +86,7 @@ A hosted version will need clear information about what data it stores, how long
 
 For questions or beta access, contact me on Telegram.
 
-<a href="https://t.me/whatashot07">Message me on Telegram</a>
+<a href="https://t.me/whatashot07"><img src="https://img.shields.io/badge/Telegram-Message-26A5E4?logo=telegram&logoColor=white" alt="Message me on Telegram"></a>
 
 ## About this repository
 
