@@ -7,10 +7,7 @@ Telegram Signal watches selected Telegram groups for keywords you set up. When a
 ## Screenshots
 
 ![Telegram Signal dashboard](docs/screenshots/dashboard.png)
-```
 
-<!-- When you add the screenshot, remove the comment markers from the line below and make sure the file path matches the image name. -->
-<!-- ![Telegram Signal dashboard](docs/screenshots/dashboard.png) -->
 
 ## At a glance
 
